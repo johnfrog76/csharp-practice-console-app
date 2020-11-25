@@ -148,109 +148,133 @@ namespace CSharpFundamentals
 
             //}
 
-            //var random = new Random();
-            //const int pwLength = 15;
-            //var buffer = new char[pwLength];
-
-            //for (var i = 0; i < pwLength; i++)
-            //{
-            //    buffer[i] = (char)('a' + random.Next(0, 26));
-            //}
-            //var password = new String(buffer);
-
-            //Console.WriteLine("password: {0}", password);
-
-            //for (var i = 1; i <= 100; i++)
-            //{
-            //    if (i % 3 == 0)
-            //    {
-            //        Console.WriteLine(i);
-            //    }
-            //}
-            //Console.WriteLine(@"running total: enter numbers then hit return and 'ok' when done");
-            //var input = "";
-            //var result = 0;
-            //while (true)
-            //{
-            //    input = Console.ReadLine();
-            //    try
-            //    {
-            //        if (!String.IsNullOrWhiteSpace(input))
-            //        {
-            //            var calculator = new Math.Calculator();
-
-            //            if (result == 0)
-            //            {
-            //                result = calculator.Add(0, Convert.ToInt32(input));
-            //            }
-            //            else
-            //            {
-            //                result = calculator.Add(result, Convert.ToInt32(input));
-            //            }
-            //            Console.WriteLine(result);
-
-            //            continue;
-            //        }
-            //        break;
-
-            //    }
-            //    catch (Exception)
-            //    {
-            //        if (input.ToUpper() == "OK")
-            //        {
-            //            Console.WriteLine("done");
-            //            break;
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("Please enter valid number.");
-            //            continue;
-            //        }
-            //    }
-
-            //}
-
-            //Console.WriteLine("Guess a number between 1 and 10");
-            //var random = new Random();
-            //var num = random.Next(1, 10);
-            //Console.WriteLine("hint: " + num);
-            //var counter = 3;
+            static void GeneratePass()
+            {
+                WriteInstructions("Use 'Random' to generate random characters");
 
 
-            //while (counter >= 0)
-            //{
-            //    var input = Console.ReadLine();
-            //    try
-            //    {
-            //        if (!String.IsNullOrWhiteSpace(input))
-            //        {
+                var random = new Random();
+                const int pwLength = 15;
+                var buffer = new char[pwLength];
+
+                for (var i = 0; i < pwLength; i++)
+                {
+                    buffer[i] = (char)('a' + random.Next(0, 26));
+                }
+                var password = new String(buffer);
+
+                Console.WriteLine("password: {0}", password);
+
+                SubMenu();
 
 
-            //            if (num == Convert.ToInt32(input))
-            //            {
-            //                Console.WriteLine("Congratulations! The number is {0}", num);
-            //                break;
-            //            }
-            //            else
-            //            {
-            //                var plural = counter == 1 ? "guess" : "guesses";
+            }         
 
-            //                Console.WriteLine("Wrong! {0} {1} left.", counter, plural);
-            //            }
 
-            //            counter--;
-            //            continue;
-            //        }
-            //        break;
+            static void CalculateRunningTotal()
+            {
+                WriteInstructions(@"running total: type a number hit 'enter' and repeat. Type 'done' and hit enter to exit.");
+                var input = "";
+                var result = 0;
+                while (true)
+                {
+                    input = Console.ReadLine();
+                    try
+                    {
+                        if (!String.IsNullOrWhiteSpace(input))
+                        {
+                            var calculator = new Math.Calculator();
 
-            //    }
-            //    catch (Exception)
-            //    {
-            //        Console.WriteLine("Please enter valid number.");
-            //        continue;
-            //    }
+                            if (result == 0)
+                            {
+                                result = calculator.Add(0, Convert.ToInt32(input));
+                            }
+                            else
+                            {
+                                result = calculator.Add(result, Convert.ToInt32(input));
+                            }
+                            Console.WriteLine(result);
 
-            //}
+                            continue;
+                        }
+                        break;
+
+                    }
+                    catch (Exception)
+                    {
+                        if (input.ToUpper() == "DONE")
+                        {
+                            Console.WriteLine("done");
+                            Console.Clear();
+                            SubMenu();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter valid number.");
+                            continue;
+                        }
+                    }
+                }
+            }
+
+
+            static void GuessNumberOneTen()
+            {
+                WriteInstructions("Guess a number between 1 and 10");
+
+                var random = new Random();
+                var num = random.Next(1, 10);
+                var counter = 3;
+
+
+                while (counter >= 0)
+                {
+                    var input = Console.ReadLine();
+
+                    if (counter < 2)
+                    {
+                        // provide hint
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("hint: " + num);
+                        Console.ResetColor();
+
+                    }
+
+                    try
+                    {
+                        if (!String.IsNullOrWhiteSpace(input))
+                        {
+
+
+                            if (num == Convert.ToInt32(input))
+                            {
+                                Console.WriteLine("Congratulations! The number is {0}", num);
+                                break;
+                            }
+                            else
+                            {
+                                var plural = counter == 1 ? "guess" : "guesses";
+
+                                Console.WriteLine("Wrong! {0} {1} left.", counter, plural);
+                            }
+
+                            counter--;
+                            continue;
+                        }
+                        continue;
+
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Please enter valid number.");
+                        continue;
+                    }
+
+                }
+
+                SubMenu();
+            }
 
             //var str = "5,3,8,1,122,114,0";
             //var arr = str.Split(',');
@@ -315,303 +339,353 @@ namespace CSharpFundamentals
 
             //Console.WriteLine(numbers.Count);
 
+            static void ShowLikes()
+            {
+                WriteInstructions("Type a name and hit enter, repeat again to see " +
+                    "who gave like this post. Type 'exit' when done.");
 
-            //Console.WriteLine("Type name, and then press 'enter' to see " +
-            //    "people who gave like this post.");
+                var input = "";
+                var likes = new List<string>();
+                var numLikes = likes.Count;
 
-            //var input = "";
-            //var likes = new List<string>();
-            //var numLikes = likes.Count;
+                while (true)
+                {
+                    input = Console.ReadLine();
+                    try
+                    {
+                        if (!String.IsNullOrWhiteSpace(input))
+                        {
+                            if (input.ToUpper() == "EXIT")
+                            {
+                                SubMenu();
+                                break;
+                            }
 
-            //while (true)
-            //{
-            //    input = Console.ReadLine();
-            //    try
-            //    {
-            //        if (!String.IsNullOrWhiteSpace(input))
-            //        {
-            //            likes.Add(input);
-            //            numLikes = likes.Count;
+                            likes.Add(input);
+                            numLikes = likes.Count;
 
-            //            if (numLikes == 0)
-            //            {
-            //                Console.WriteLine("Your post has zero likes");
-            //            } else if (numLikes == 1)
-            //            {
-            //                var friend1 = likes[0];
-            //                Console.WriteLine("{0} likes your post", friend1);
-            //            } else if (numLikes == 2)
-            //            {
-            //                var friend1 = likes[0];
-            //                var friend2 = likes[1];
-            //                Console.WriteLine("{0} and {1} like your post", friend1, friend2);
-            //            } else if (numLikes > 2)
-            //            {
-            //                var friend1 = likes[0];
-            //                var friend2 = likes[1];
-            //                Console.WriteLine(
-            //                    "{0}, {1}, and {2} others like your post",
-            //                    friend1,
-            //                    friend2,
-            //                    (numLikes - 2)
-            //                );
+                            if (numLikes == 0)
+                            {
+                                Console.WriteLine("Your post has zero likes");
+                            }
+                            else if (numLikes == 1)
+                            {
+                                var friend1 = likes[0];
+                                Console.WriteLine("{0} likes your post", friend1);
+                            }
+                            else if (numLikes == 2)
+                            {
+                                var friend1 = likes[0];
+                                var friend2 = likes[1];
+                                Console.WriteLine("{0} and {1} like your post", friend1, friend2);
+                            }
+                            else if (numLikes > 2)
+                            {
+                                var friend1 = likes[0];
+                                var friend2 = likes[1];
+                                Console.WriteLine(
+                                    "{0}, {1}, and {2} others like your post",
+                                    friend1,
+                                    friend2,
+                                    (numLikes - 2)
+                                );
 
-            //            }
-            //            continue;
-            //        }
-            //        break;
+                            }
+                            continue;
+                        }
+                        break;
 
-            //    }
-            //    catch (Exception)
-            //    {
-            //        Console.WriteLine("there was an error.");
-            //        continue;
-            //    }
+                    }
+                    catch (Exception)
+                    {
+                        
+                        Console.WriteLine("there was an error.");
+                        continue;
+                    }
 
-            //}
+                }
 
+            }
 
-            //Console.WriteLine("Please type your name and hit 'enter'");
+            static void ReverseString()
+            {
 
-            //while (true)
-            //{
-            //    var input = Console.ReadLine();
+                WriteInstructions("Please type your name and press 'enter'");
 
-            //    try
-            //    {
-            //        if (!String.IsNullOrWhiteSpace(input))
-            //        {
+                while (true)
+                {
+                    var input = Console.ReadLine();
 
-            //            var arr = input.ToCharArray();
-            //            Array.Reverse(arr);
-            //            var reversedName = new string(arr);
-            //            Console.WriteLine(
-            //                "your name reversed is '{0}'",
-            //                reversedName
-            //            );
-            //            continue;
-            //        }
-            //        break;
+                    try
+                    {
+                        if (!String.IsNullOrWhiteSpace(input))
+                        {
 
-            //    }
-            //    catch (Exception)
-            //    {
-            //        Console.WriteLine("there was an error");
-            //        continue;
-            //    }
+                            var arr = input.ToCharArray();
+                            Array.Reverse(arr);
+                            var reversedName = new string(arr);
+                            Console.WriteLine(
+                                "your name reversed is '{0}'",
+                                reversedName
+                            );
 
-            //}
+                            SubMenu();
+                            break;
+                        }
+                        continue;
 
-            //Console.WriteLine("Please add five unique numbers -- between each number hit 'enter'");
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("there was an error");
+                        continue;
+                    }
 
-
-            //var uniques = new List<int>();
-            //int MAX = 5;
-
-            //while (true)
-            //{
-            //    var input = Console.ReadLine();
-
-            //    try
-            //    {
-            //        if (!String.IsNullOrWhiteSpace(input))
-            //        {
-
-
-            //            if (uniques.Count < MAX && uniques.IndexOf(Convert.ToInt32(input)) == -1)
-            //            {
-            //                uniques.Add(Convert.ToInt32(input));
-            //                if (uniques.Count == MAX)
-            //                {
-            //                    var str = "";
-            //                    for (var i = 0; i < MAX; i++)
-            //                    {
-            //                        var isLast = (i + 1 == MAX) ? "" : ","; 
-            //                        str += Convert.ToInt32(uniques[i]) + isLast; 
-            //                    }
-            //                    Console.WriteLine("I have five uniques: {0}!", str);
-
-            //                    break;
-            //                }
-            //            }
-            //            else
-            //            {
-            //                Console.WriteLine("Sorry, you already have {0}. Try again.", input);
-            //            }
-            //            continue;
-            //        }
-            //        break;
-
-            //    }
-            //    catch (Exception)
-            //    {
-            //        Console.WriteLine("there was an error");
-            //        continue;
-            //    }
-
-            //}
-
-            //Console.WriteLine("Supply comma separated list of numbers and then press 'enter'");
-
-            //while (true)
-            //{
-            //    var input = Console.ReadLine();
-
-            //    try
-            //    {
-            //        if (String.IsNullOrWhiteSpace(input))
-            //        {
-            //            Console.WriteLine("Invalid List");
-            //        }
-            //        else
-            //        {
-
-            //            var nums = input.Split(",");
-            //            if (nums.Length > 6)
-            //            {
-            //                Console.WriteLine("List nums between one and six numbers in length");
-            //                continue;
-            //            }
-            //            var sorted = new List<int>();
-            //            var min = "";
-
-            //            foreach (var foo in nums)
-            //            {
-            //                int item = Convert.ToInt32(foo);
-            //                sorted.Add(item);
-            //            }
-
-            //            sorted.Sort();
-            //            int[] minArr = sorted.GetRange(0, 3).ToArray();
+                }
+            }
 
 
-            //            for (var i = 0; i < minArr.Length; i++)
-            //            {
-            //                var isLast = (i == minArr.Length - 1) ? "" : ",";
-            //                min += Convert.ToString(minArr[i]) + isLast;
-
-            //            }
-
-            //            Console.WriteLine("Three smallest numbers: {0}", min);
-            //            break;
-            //        }
-            //        break;
-
-            //    }
-            //    catch (Exception)
-            //    {
-            //        if (input.ToLower() == "quit")
-            //        {
-            //            Console.WriteLine("done");
-            //            break;
-            //        } else
-            //        {
-
-            //            Console.WriteLine("there was an error");
-            //            continue;
-            //        }
-            //    }
-            //}
+            static void AcceptUniquesList()
+            {
+                WriteInstructions("Please add five unique numbers -- between each number hit 'enter'");
 
 
-            //// create
-            //var dateTime = new DateTime(2015, 1, 1);
-            //var now = DateTime.Now;
-            //var today = DateTime.Today;
-            //var tomorrow = now.AddDays(1);
-            //var yesterday = now.AddDays(-1);
+                var uniques = new List<int>();
+                int MAX = 5;
 
-            //Console.WriteLine(now.ToLongDateString());
-            //Console.WriteLine(now.ToShortDateString());
-            //Console.WriteLine(now.ToLongTimeString());
-            //Console.WriteLine(now.ToShortTimeString());
-            //Console.WriteLine(now.ToString("MM-dd-yyyy HH:mm"));
+                while (true)
+                {
+                    var input = Console.ReadLine();
 
-            //var timeSpan = TimeSpan.FromHours(1);
-            //var start = DateTime.Now;
-            //var end = DateTime.Now.AddMinutes(2);
-
-            //var duration = end - start;
-            //Console.WriteLine("Duration: " + duration);
-
-            //// properties
-            //Console.WriteLine("minutes: " + timeSpan.Minutes);
-            //Console.WriteLine("total minutes: " + timeSpan.TotalMinutes);
-
-            //// add
-            //Console.WriteLine("add example: " + timeSpan.Add(TimeSpan.FromMinutes(8)));
-            //Console.WriteLine("subtract example: " + timeSpan.Subtract(TimeSpan.FromMinutes(2)));
-
-            ////to string
-
-            //// parse
-            ///
-
-            //var longStr = "This is a really really long lorem ipsum dolor sit " +
-            //    "amet string that should really be truncated.";
-
-            //var loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-            //    "In egestas est quis velit auctor, sed hendrerit ipsum porta. Aenean " +
-            //    "suscipit et eros sed viverra. Vestibulum eu nunc at lectus sagittis " +
-            //    "tempus id at nulla. Quisque eget nisl lorem. Fusce lorem tortor, " +
-            //    "mattis et pharetra vel, congue sit amet quam. Nulla facilisi. " +
-            //    "Donec hendrerit, nulla id scelerisque facilisis, justo nulla " +
-            //    "consequat leo, at euismod eros dolor vel leo.";
-
-            //var smartTruncate = new SmartTruncate();
-            //Console.WriteLine(smartTruncate.Truncate(longStr, 60));
-
-            //Console.WriteLine(smartTruncate.Truncate(loremIpsum, 30));
-
-            //var sentense = longStr;
-
-            //static string SummarizeText(string sentense, int maxLength = 20)
-            //{
-
-            //    if (sentense.Length < maxLength)
-            //    {
-            //        return sentense;
-            //    }
-
-            //    var words = sentense.Split(' ');
-            //    var totalCharacters = 0;
-            //    var summaryWords = new List<string>();
-
-            //    foreach (var word in words)
-            //    {
-            //        summaryWords.Add(word);
-            //        totalCharacters += word.Length + 1;
-            //        if (totalCharacters > maxLength)
-            //            break;
-            //    }
-
-            //    return String.Join(" ", summaryWords) + " ...";
-            //}
-
-            //Console.WriteLine(SummarizeText(loremIpsum, 120));
-            //Console.WriteLine(SummarizeText(sentense));
-            //Console.WriteLine(SummarizeText("wassup short string"));
+                    try
+                    {
+                        if (!String.IsNullOrWhiteSpace(input))
+                        {
 
 
-            //var builder = new StringBuilder();
-            //builder
-            //    .Append('-', 10)
-            //    .AppendLine()
-            //    .Append("Header")
-            //    .AppendLine()
-            //    .Append('-', 10);
+                            if (uniques.Count < MAX && uniques.IndexOf(Convert.ToInt32(input)) == -1)
+                            {
+                                uniques.Add(Convert.ToInt32(input));
+                                if (uniques.Count == MAX)
+                                {
+                                    var str = "";
+                                    for (var i = 0; i < MAX; i++)
+                                    {
+                                        var isLast = (i + 1 == MAX) ? "" : ",";
+                                        str += Convert.ToInt32(uniques[i]) + isLast;
+                                    }
+                                    Console.WriteLine("I have five uniques: {0}!", str);
 
-            //Console.WriteLine(builder);
+
+                                    SubMenu();
+                                    break;
+                                    
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Sorry, you already have {0}. Try again.", input);
+                            }
+                            continue;
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("there was an error");
+                        continue;
+                    }
+
+                }
+
+            }
 
 
-            //var name = "Mosh";
-            //name.ToUpper();
-            //Console.WriteLine(name);
+            static void SmallestNumsInList()
+            {
+                WriteInstructions("Supply comma separated list of numbers and " +
+                    "then press 'enter' to see three smallest numbers");
+
+                while (true)
+                {
+                    var input = Console.ReadLine();
+
+                    try
+                    {
+                        if (String.IsNullOrWhiteSpace(input))
+                        {
+                            Console.WriteLine("Invalid List");
+                        }
+                        else
+                        {
+
+                            var nums = input.Split(",");
+                            if (nums.Length > 6)
+                            {
+                                Console.WriteLine("List nums between one and six numbers in length");
+                                continue;
+                            }
+                            var sorted = new List<int>();
+                            var min = "";
+
+                            foreach (var foo in nums)
+                            {
+                                int item = Convert.ToInt32(foo);
+                                sorted.Add(item);
+                            }
+
+                            sorted.Sort();
+                            int[] minArr = sorted.GetRange(0, 3).ToArray();
+
+
+                            for (var i = 0; i < minArr.Length; i++)
+                            {
+                                var isLast = (i == minArr.Length - 1) ? "" : ",";
+                                min += Convert.ToString(minArr[i]) + isLast;
+
+                            }
+
+                            Console.WriteLine("Three smallest numbers: {0}", min);
+                            
+
+                            SubMenu();
+                            break;
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+                        if (input.ToLower() == "quit")
+                        {
+                            Console.WriteLine("done");
+                            break;
+                        }
+                        else
+                        {
+
+                            Console.WriteLine("there was an error");
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            static void StuffWithDateTime()
+            {
+                WriteInstructions("DateTime Stuff Here");
+
+                // create
+                var dateTime = new DateTime(2015, 1, 1);
+                var now = DateTime.Now;
+                var today = DateTime.Today;
+                var tomorrow = now.AddDays(1);
+                var yesterday = now.AddDays(-1);
+
+                Console.WriteLine(now.ToLongDateString());
+                Console.WriteLine(now.ToShortDateString());
+                Console.WriteLine(now.ToLongTimeString());
+                Console.WriteLine(now.ToShortTimeString());
+                Console.WriteLine(now.ToString("MM-dd-yyyy HH:mm"));
+
+                var timeSpan = TimeSpan.FromHours(1);
+                var start = DateTime.Now;
+                var end = DateTime.Now.AddMinutes(2);
+
+                var duration = end - start;
+                Console.WriteLine("Duration: " + duration);
+
+                // properties
+                Console.WriteLine("minutes: " + timeSpan.Minutes);
+                Console.WriteLine("total minutes: " + timeSpan.TotalMinutes);
+
+                // add
+                Console.WriteLine("add example: " + timeSpan.Add(TimeSpan.FromMinutes(8)));
+                Console.WriteLine("subtract example: " + timeSpan.Subtract(TimeSpan.FromMinutes(2)));
+
+                // parse
+                Console.WriteLine(DateTime.Parse("23:00"));
+
+                SubMenu();
+            }
+
+
+            static void TruncateSomeTexts()
+            {
+                static string SummarizeText(string sentense, int maxLength = 20)
+                {
+
+                    if (sentense.Length < maxLength)
+                    {
+                        return sentense;
+                    }
+
+                    var words = sentense.Split(' ');
+                    var totalCharacters = 0;
+                    var summaryWords = new List<string>();
+
+                    foreach (var word in words)
+                    {
+                        summaryWords.Add(word);
+                        totalCharacters += word.Length + 1;
+                        if (totalCharacters > maxLength)
+                            break;
+                    }
+
+                    return String.Join(" ", summaryWords) + " ...";
+                }
+
+                var longStr = "This is a really really long lorem ipsum dolor sit " +
+                    "amet string that should really be truncated.";
+
+                var loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                    "In egestas est quis velit auctor, sed hendrerit ipsum porta. Aenean " +
+                    "suscipit et eros sed viverra. Vestibulum eu nunc at lectus sagittis " +
+                    "tempus id at nulla. Quisque eget nisl lorem. Fusce lorem tortor, " +
+                    "mattis et pharetra vel, congue sit amet quam. Nulla facilisi. " +
+                    "Donec hendrerit, nulla id scelerisque facilisis, justo nulla " +
+                    "consequat leo, at euismod eros dolor vel leo.";
+
+                var sentense = longStr;
+
+                WriteInstructions("class and method to truncate texts");
+
+                // these use class
+                var smartTruncate = new SmartTruncate();
+                Console.WriteLine(smartTruncate.Truncate(longStr, 60));
+                Console.WriteLine(smartTruncate.Truncate(loremIpsum, 30));
+
+                // these use method
+                Console.WriteLine(SummarizeText(loremIpsum, 120));
+                Console.WriteLine(SummarizeText(sentense));
+                Console.WriteLine(SummarizeText("wassup short string"));
+
+                SubMenu();
+
+            }
+
+
+            static void MakeFancyHeader()
+            {
+                var builder = new StringBuilder();
+                builder
+                    .Append('-', 10)
+                    .AppendLine()
+                    .Append("Fancy Heading")
+                    .AppendLine()
+                    .Append('-', 10);
+
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(builder);
+                Console.ResetColor();
+                SubMenu();
+
+            }
+
 
             static void TestStringConsecutiveNumbers()
             {
-                Console.Clear();
-                Console.WriteLine("Please type string of consecutive numbers separated by hyphen");
+                WriteInstructions("Please type string of consecutive numbers separated by hyphen");
 
                 while (true)
                 {
@@ -669,8 +743,7 @@ namespace CSharpFundamentals
 
             static void StrHasDuplicateNumber ()
             {
-                Console.Clear();
-                Console.WriteLine("Please type string of numbers separated by hyphen");
+                WriteInstructions("Please type string of numbers separated by hyphen");
 
                 while (true)
                 {
@@ -730,6 +803,14 @@ namespace CSharpFundamentals
                 }
             }
 
+            static void WriteInstructions(string msg="instructions")
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine(msg);
+                Console.ResetColor();
+            }
+
 
             static void SubMenu()
             {
@@ -745,8 +826,7 @@ namespace CSharpFundamentals
 
             static void EnterValidTimeFormat()
             {
-                Console.Clear();
-                Console.WriteLine("Enter a time valid value in 24hr format");
+                WriteInstructions("Enter a time valid value in 24hr format");
 
                 while (true)
                 {
@@ -816,9 +896,7 @@ namespace CSharpFundamentals
                     return temp;
                 }
 
-                Console.Clear();
-                Console.WriteLine("MakePascalCase: type a few words separated by space");
-
+                WriteInstructions("MakePascalCase: type a few words separated by space");
 
                 while (true)
                 {
@@ -848,8 +926,8 @@ namespace CSharpFundamentals
 
             static void CountVowelsInString()
             {
-                Console.Clear();
-                Console.WriteLine("VowelCounter: type a word with lots of vowels!");
+                WriteInstructions("VowelCounter: type a word with lots of vowels!");
+
                 static int VowelCount(string str)
                 {
                     var count = 0;
@@ -894,8 +972,6 @@ namespace CSharpFundamentals
                     }
 
                 }
-
-                //Console.WriteLine(VowelCount("hello"));
 
             }
 
@@ -986,12 +1062,23 @@ namespace CSharpFundamentals
             {
                 Console.Clear();
                 Console.WriteLine("Choose an option:");
-                Console.WriteLine("1) Enter valid time string 24 hour format");
-                Console.WriteLine("2) Make Pascal Case");
-                Console.WriteLine("3) String has duplicate number");
-                Console.WriteLine("4) Count vowels in a string");
-                Console.WriteLine("5) String contains consecutive numbers");
-                Console.WriteLine("14) Exit");
+                Console.WriteLine(" 1) Enter valid time string 24 hour format");
+                Console.WriteLine(" 2) Make Pascal Case");
+                Console.WriteLine(" 3) String has duplicate number");
+                Console.WriteLine(" 4) Count vowels in a string");
+                Console.WriteLine(" 5) String contains consecutive numbers");
+                Console.WriteLine(" 6) Reverse string");
+                Console.WriteLine(" 7) Truncate some strings");
+                Console.WriteLine(" 8) Some DateTime stuff");
+                Console.WriteLine(" 9) Calculate running total");
+                Console.WriteLine("10) Create a random string of characters");
+                Console.WriteLine("11) Guess a number");
+                Console.WriteLine("12) Who gave likes to post");
+                Console.WriteLine("13) Fancy Header");
+                Console.WriteLine("14) Three smallest numbers in list");
+                Console.WriteLine("15) Accept only unique numbers");
+
+                Console.WriteLine("20) Exit");
                 Console.Write("\r\nSelect an option: ");
 
                 switch (Console.ReadLine())
@@ -1011,7 +1098,37 @@ namespace CSharpFundamentals
                     case "5":
                         TestStringConsecutiveNumbers();
                         return true;
+                    case "6":
+                        ReverseString();
+                        return true;
+                    case "7":
+                        TruncateSomeTexts();
+                        return true;
+                    case "8":
+                        StuffWithDateTime();
+                        return true;
+                    case "9":
+                        CalculateRunningTotal();
+                        return true;
+                    case "10":
+                        GeneratePass();
+                        return true;
+                    case "11":
+                        GuessNumberOneTen();
+                        return true;
+                    case "12":
+                        ShowLikes();
+                        return true;
+                    case "13":
+                        MakeFancyHeader();
+                        return true;
                     case "14":
+                        SmallestNumsInList();
+                        return true;
+                    case "15":
+                        AcceptUniquesList();
+                        return true;
+                    case "20":
                         return false;
                     default:
                         return true;
