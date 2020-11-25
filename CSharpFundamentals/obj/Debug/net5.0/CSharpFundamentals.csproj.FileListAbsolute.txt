@@ -1,0 +1,15 @@
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/bin/Debug/net5.0/CSharpFundamentals.deps.json
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/bin/Debug/net5.0/CSharpFundamentals.runtimeconfig.json
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/bin/Debug/net5.0/CSharpFundamentals.runtimeconfig.dev.json
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/bin/Debug/net5.0/CSharpFundamentals.dll
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/bin/Debug/net5.0/ref/CSharpFundamentals.dll
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/bin/Debug/net5.0/CSharpFundamentals.pdb
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/CSharpFundamentals.csprojAssemblyReference.cache
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/CSharpFundamentals.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/CSharpFundamentals.AssemblyInfoInputs.cache
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/CSharpFundamentals.AssemblyInfo.cs
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/CSharpFundamentals.csproj.CoreCompileInputs.cache
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/CSharpFundamentals.dll
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/ref/CSharpFundamentals.dll
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/CSharpFundamentals.pdb
+/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/Debug/net5.0/CSharpFundamentals.genruntimeconfig.cache

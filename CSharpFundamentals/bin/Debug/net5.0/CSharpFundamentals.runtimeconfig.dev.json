@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/jwebster/.dotnet/store/|arch|/|tfm|",
+      "/Users/jwebster/.nuget/packages"
+    ]
+  }
+}
