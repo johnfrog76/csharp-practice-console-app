@@ -158,7 +158,6 @@ namespace CSharpFundamentals
                     try
                     {
                         var val = Convert.ToInt16(input);
-                        // Console.WriteLine(menuItems[val].methodName);
                         CallMethod(menuItems[val].methodName);
                         return menuItems[val].showsMenu;
                     }
@@ -171,61 +170,6 @@ namespace CSharpFundamentals
                 continue;
             }
 
-
-
-            //switch (Console.ReadLine())
-            //{
-            //    case "1":
-            //        EnterValidTimeFormat();
-            //        return true;
-            //    case "2":
-            //        MakePascalCase();
-            //        return true;
-            //    case "3":
-            //        StrHasDuplicateNumber();
-            //        return true;
-            //    case "4":
-            //        CountVowelsInString();
-            //        return true;
-            //    case "5":
-            //        TestStringConsecutiveNumbers();
-            //        return true;
-            //    case "6":
-            //        ReverseString();
-            //        return true;
-            //    case "7":
-            //        TruncateSomeTexts();
-            //        return true;
-            //    case "8":
-            //        StuffWithDateTime();
-            //        return true;
-            //    case "9":
-            //        CalculateRunningTotal();
-            //        return true;
-            //    case "10":
-            //        GeneratePass();
-            //        return true;
-            //    case "11":
-            //        GuessNumberOneTen();
-            //        return true;
-            //    case "12":
-            //        ShowLikes();
-            //        return true;
-            //    case "13":
-            //        MakeFancyHeader();
-            //        return true;
-            //    case "14":
-            //        SmallestNumsInList();
-            //        return true;
-            //    case "15":
-            //        AcceptUniquesList();
-            //        return true;
-            //    case "16":
-            //        // exit
-            //        return false;
-            //    default:
-            //        return true;
-            //}
         }
 
         public static void WriteErrorMessage(string msg = "an unknown error occured")
@@ -685,12 +629,15 @@ namespace CSharpFundamentals
         public static void MakeFancyHeader()
         {
             var builder = new StringBuilder();
+            var heading = "Super Fancy Heading";
+            var drawLen = heading.Length;
+
             builder
-                .Append('-', 10)
+                .Append('-', drawLen)
                 .AppendLine()
-                .Append("Fancy Heading")
+                .Append(heading)
                 .AppendLine()
-                .Append('-', 10);
+                .Append('-', drawLen);
 
             Console.Clear();
             WriteSuccessMessage(builder.ToString());
@@ -1348,21 +1295,6 @@ namespace CSharpFundamentals
                 showMenu = MainMenu();
             }
             
-        }
-    }
-
-    public class MenuItem
-    {
-        public string description;
-        public bool showsMenu;
-        public string methodName;
-
-        // constructor
-        public MenuItem(string description, bool showsMenu, string methodName)
-        {
-            this.description = description;
-            this.showsMenu = showsMenu;
-            this.methodName = methodName;
         }
     }
 }
