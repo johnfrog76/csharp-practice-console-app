@@ -20,7 +20,7 @@
       "outputPath": "/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jwebster/.config/NuGet/NuGet.Config"
+        "/Users/jwebster/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

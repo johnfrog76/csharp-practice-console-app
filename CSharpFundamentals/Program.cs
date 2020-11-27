@@ -114,7 +114,7 @@ namespace CSharpFundamentals
 
             foreach (var item in menuItems)
             {
-                menuTitles.Add(item.description);
+                menuTitles.Add(item.Description);
             }
 
             var menuArr = menuTitles.ToArray();
@@ -158,8 +158,8 @@ namespace CSharpFundamentals
                     try
                     {
                         var val = Convert.ToInt16(input);
-                        CallMethod(menuItems[val].methodName);
-                        return menuItems[val].showsMenu;
+                        CallMethod(menuItems[val].MethodName);
+                        return menuItems[val].ShowsMenu;
                     }
                     catch (Exception)
                     {
@@ -569,8 +569,6 @@ namespace CSharpFundamentals
             SubMenu();
         }
 
-
-
         public static void TruncateSomeTexts()
         {
             static string SummarizeText(string sentense, int maxLength = 20)
@@ -644,7 +642,6 @@ namespace CSharpFundamentals
             SubMenu();
 
         }
-
 
         public static void TestStringConsecutiveNumbers()
         {
@@ -804,10 +801,7 @@ namespace CSharpFundamentals
                     WriteErrorMessage();
                     continue;
                 }
-
             }
-
-
         }
 
 
@@ -918,9 +912,7 @@ namespace CSharpFundamentals
                     WriteErrorMessage();
                     continue;
                 }
-
             }
-
         }
 
         public static void StuffWithDateTime()
