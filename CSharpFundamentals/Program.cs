@@ -18,6 +18,7 @@ namespace CSharpFundamentals
     {
         static void Main(string[] args)
         {
+
             //var john = new Person();
             //john.FirstName = "John";
             //john.LastName = "Webster";
@@ -152,7 +153,6 @@ namespace CSharpFundamentals
             {
                 WriteInstructions("Use 'Random' to generate random characters");
 
-
                 var random = new Random();
                 const int pwLength = 15;
                 var buffer = new char[pwLength];
@@ -163,7 +163,8 @@ namespace CSharpFundamentals
                 }
                 var password = new String(buffer);
 
-                Console.WriteLine("password: {0}", password);
+                var success = String.Format("password: {0}", password);
+                WriteSuccessMessage(success);
 
                 SubMenu();
 
@@ -193,8 +194,11 @@ namespace CSharpFundamentals
                             {
                                 result = calculator.Add(result, Convert.ToInt32(input));
                             }
-                            Console.WriteLine(result);
-
+                            var success = String.Format(
+                                "Your running total is: {0}",
+                                result
+                            );
+                            WriteSuccessMessage(success);
                             continue;
                         }
                         break;
@@ -211,7 +215,7 @@ namespace CSharpFundamentals
                         }
                         else
                         {
-                            Console.WriteLine("Please enter valid number.");
+                            WriteErrorMessage("Please enter valid number.");
                             continue;
                         }
                     }
@@ -249,14 +253,22 @@ namespace CSharpFundamentals
 
                             if (num == Convert.ToInt32(input))
                             {
-                                Console.WriteLine("Congratulations! The number is {0}", num);
+                                var success = String.Format(
+                                    "Congratulations! The number is {0}",
+                                    num
+                                );
+                                WriteSuccessMessage(success);
                                 break;
                             }
                             else
                             {
                                 var plural = counter == 1 ? "guess" : "guesses";
-
-                                Console.WriteLine("Wrong! {0} {1} left.", counter, plural);
+                                var errorMsg = String.Format(
+                                    "Wrong! {0} {1} left.",
+                                    counter,
+                                    plural
+                                );
+                                WriteErrorMessage(errorMsg);
                             }
 
                             counter--;
@@ -267,7 +279,7 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Please enter valid number.");
+                        WriteErrorMessage("Please enter valid number.");
                         continue;
                     }
 
@@ -363,27 +375,33 @@ namespace CSharpFundamentals
 
                             likes.Add(input);
                             numLikes = likes.Count;
+                            var success = "";
 
                             if (numLikes == 0)
                             {
-                                Console.WriteLine("Your post has zero likes");
+                                success = "Your post has zero likes";
                             }
                             else if (numLikes == 1)
                             {
                                 var friend1 = likes[0];
-                                Console.WriteLine("{0} likes your post", friend1);
+                                success = String.Format("{0} likes your post", friend1);
                             }
                             else if (numLikes == 2)
                             {
                                 var friend1 = likes[0];
                                 var friend2 = likes[1];
-                                Console.WriteLine("{0} and {1} like your post", friend1, friend2);
+
+                                success = String.Format(
+                                    "{0} and {1} like your post",
+                                    friend1,
+                                    friend2
+                                );
                             }
                             else if (numLikes > 2)
                             {
                                 var friend1 = likes[0];
                                 var friend2 = likes[1];
-                                Console.WriteLine(
+                                success = String.Format(
                                     "{0}, {1}, and {2} others like your post",
                                     friend1,
                                     friend2,
@@ -391,6 +409,7 @@ namespace CSharpFundamentals
                                 );
 
                             }
+                            WriteSuccessMessage(success);
                             continue;
                         }
                         break;
@@ -398,8 +417,8 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        
-                        Console.WriteLine("there was an error.");
+
+                        WriteErrorMessage();
                         continue;
                     }
 
@@ -424,10 +443,12 @@ namespace CSharpFundamentals
                             var arr = input.ToCharArray();
                             Array.Reverse(arr);
                             var reversedName = new string(arr);
-                            Console.WriteLine(
+                            var success = String.Format(
                                 "your name reversed is '{0}'",
                                 reversedName
                             );
+
+                            WriteSuccessMessage(success);
 
                             SubMenu();
                             break;
@@ -437,7 +458,7 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("there was an error");
+                        WriteErrorMessage();
                         continue;
                     }
 
@@ -474,8 +495,9 @@ namespace CSharpFundamentals
                                         var isLast = (i + 1 == MAX) ? "" : ",";
                                         str += Convert.ToInt32(uniques[i]) + isLast;
                                     }
-                                    Console.WriteLine("I have five uniques: {0}!", str);
 
+                                    var success = String.Format("I have five uniques: {0}!", str);
+                                    WriteSuccessMessage(success);
 
                                     SubMenu();
                                     break;
@@ -484,7 +506,11 @@ namespace CSharpFundamentals
                             }
                             else
                             {
-                                Console.WriteLine("Sorry, you already have {0}. Try again.", input);
+                                var message = String.Format(
+                                    "Sorry, you already have {0}. Try again.",
+                                    input
+                                );
+                                WriteErrorMessage(message);
                             }
                             continue;
                         }
@@ -492,7 +518,7 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("there was an error");
+                        WriteErrorMessage();
                         continue;
                     }
 
@@ -514,7 +540,7 @@ namespace CSharpFundamentals
                     {
                         if (String.IsNullOrWhiteSpace(input))
                         {
-                            Console.WriteLine("Invalid List");
+                            WriteErrorMessage("Invalid List");
                         }
                         else
                         {
@@ -522,7 +548,7 @@ namespace CSharpFundamentals
                             var nums = input.Split(",");
                             if (nums.Length > 6)
                             {
-                                Console.WriteLine("List nums between one and six numbers in length");
+                                WriteErrorMessage("List nums between one and six numbers in length");
                                 continue;
                             }
                             var sorted = new List<int>();
@@ -545,8 +571,8 @@ namespace CSharpFundamentals
 
                             }
 
-                            Console.WriteLine("Three smallest numbers: {0}", min);
-                            
+                            var success = String.Format("Three smallest numbers: {0}", min);
+                            WriteSuccessMessage(success);
 
                             SubMenu();
                             break;
@@ -563,7 +589,7 @@ namespace CSharpFundamentals
                         else
                         {
 
-                            Console.WriteLine("there was an error");
+                            WriteErrorMessage();
                             continue;
                         }
                     }
@@ -649,12 +675,12 @@ namespace CSharpFundamentals
 
                 WriteInstructions("class and method to truncate texts");
 
-                // these use class
+                // class
                 var smartTruncate = new SmartTruncate();
                 Console.WriteLine(smartTruncate.Truncate(longStr, 60));
                 Console.WriteLine(smartTruncate.Truncate(loremIpsum, 30));
 
-                // these use method
+                // method
                 Console.WriteLine(SummarizeText(loremIpsum, 120));
                 Console.WriteLine(SummarizeText(sentense));
                 Console.WriteLine(SummarizeText("wassup short string"));
@@ -675,9 +701,7 @@ namespace CSharpFundamentals
                     .Append('-', 10);
 
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(builder);
-                Console.ResetColor();
+                WriteSuccessMessage(builder.ToString());
                 SubMenu();
 
             }
@@ -724,7 +748,7 @@ namespace CSharpFundamentals
 
                             notStr = isConsecutive ? "are" : "not";
 
-                            Console.WriteLine(template, notStr);
+                            WriteSuccessMessage(String.Format(template, notStr));
                             SubMenu();
                             break;
                         }
@@ -733,7 +757,7 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("there was an error");
+                        WriteErrorMessage();
                         continue;
                     }
 
@@ -743,7 +767,7 @@ namespace CSharpFundamentals
 
             static void StrHasDuplicateNumber ()
             {
-                WriteInstructions("Please type string of numbers separated by hyphen");
+                WriteInstructions(@"Enter numbers separated by '-', and you will receive warning of duplicates.");
 
                 while (true)
                 {
@@ -786,7 +810,10 @@ namespace CSharpFundamentals
 
                             if (HasDuplicateNumber(arr))
                             {
-                                Console.WriteLine("Duplicate number!");
+                                WriteErrorMessage("Duplicate number!");
+                            } else
+                            {
+                                WriteSuccessMessage("No duplicates!");
                             }
                             SubMenu();
                             break;
@@ -796,32 +823,11 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("there was an error");
+                        WriteErrorMessage();
                         continue;
                     }
 
                 }
-            }
-
-            static void WriteInstructions(string msg="instructions")
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(msg);
-                Console.ResetColor();
-            }
-
-
-            static void SubMenu()
-            {
-                Console.Write("\r\nPress Enter to return to Main Menu");
-                var user = Console.ReadLine();
-
-                if (String.IsNullOrWhiteSpace(user))
-                {
-                    MainMenu();
-                }
-
             }
 
             static void EnterValidTimeFormat()
@@ -847,7 +853,7 @@ namespace CSharpFundamentals
                             }
                             catch (FormatException)
                             {
-                                Console.WriteLine("Invalid time!");
+                                WriteErrorMessage("Invalid time string!");
                             }
                         }
                         continue;
@@ -855,7 +861,7 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("there was an error");
+                        WriteErrorMessage();
                         continue;
                     }
 
@@ -906,7 +912,8 @@ namespace CSharpFundamentals
                     {
                         if (!String.IsNullOrWhiteSpace(input))
                         {
-                            Console.WriteLine(MakePascalString(input));
+                            var success = String.Format(MakePascalString(input));
+                            WriteSuccessMessage(success);
 
                             SubMenu();
                             break;
@@ -917,7 +924,7 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("there was an error");
+                        WriteErrorMessage();
                         continue;
                     }
 
@@ -953,11 +960,12 @@ namespace CSharpFundamentals
                     {
                         if (!String.IsNullOrWhiteSpace(input))
                         {
-                            Console.WriteLine(
+                            var success = String.Format(
                                 "Number of vowels in {0} is {1}",
                                 input,
                                 VowelCount(input)
                             );
+                            WriteSuccessMessage(success);
 
                             SubMenu();
                             break;
@@ -967,7 +975,7 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("there was an error");
+                        WriteErrorMessage();
                         continue;
                     }
 
@@ -1058,27 +1066,97 @@ namespace CSharpFundamentals
             //Console.WriteLine("File: " + Path.GetFileName(path2));
             //Console.WriteLine("File without extension: " + Path.GetFileNameWithoutExtension(path2));
             //Console.WriteLine("Directory Name: " + Path.GetDirectoryName(path2));
+
+            static void WriteErrorMessage(string msg = "an unknown error occured")
+            {
+                var message = new Messages();
+                message.Error(msg);
+            }
+
+            static void WriteSuccessMessage(string msg)
+            {
+                var message = new Messages();
+                message.Success(msg);
+            }
+
+            static void WriteInstructions(string msg)
+            {
+                var message = new Messages();
+                Console.Clear();
+                message.Warn(msg);
+            }
+
+
+            static void SubMenu()
+            {
+                var message = new Messages();
+
+
+                message.Info("\r\nPress Enter to return to Main Menu");
+
+                var user = Console.ReadLine();
+
+                if (String.IsNullOrWhiteSpace(user))
+                {
+                    MainMenu();
+                }
+
+            }
+
             static bool MainMenu()
             {
-                Console.Clear();
-                Console.WriteLine("Choose an option:");
-                Console.WriteLine(" 1) Enter valid time string 24 hour format");
-                Console.WriteLine(" 2) Make Pascal Case");
-                Console.WriteLine(" 3) String has duplicate number");
-                Console.WriteLine(" 4) Count vowels in a string");
-                Console.WriteLine(" 5) String contains consecutive numbers");
-                Console.WriteLine(" 6) Reverse string");
-                Console.WriteLine(" 7) Truncate some strings");
-                Console.WriteLine(" 8) Some DateTime stuff");
-                Console.WriteLine(" 9) Calculate running total");
-                Console.WriteLine("10) Create a random string of characters");
-                Console.WriteLine("11) Guess a number");
-                Console.WriteLine("12) Who gave likes to post");
-                Console.WriteLine("13) Fancy Header");
-                Console.WriteLine("14) Three smallest numbers in list");
-                Console.WriteLine("15) Accept only unique numbers");
+                var message = new Messages();
 
-                Console.WriteLine("20) Exit");
+                var menuItems = new List<string>();
+                menuItems.Add("Enter valid time string 24 hour format");
+                menuItems.Add("Make Pascal Case");
+                menuItems.Add("String has duplicate number");
+                menuItems.Add("Count vowels in a string");
+                menuItems.Add("String contains consecutive numbers");
+                menuItems.Add("Reverse string");
+                menuItems.Add("Truncate some strings");
+                menuItems.Add("Some DateTime stuff");
+                menuItems.Add("Calculate running total");
+                menuItems.Add("Create a random string of characters");
+                menuItems.Add("Guess a number");
+                menuItems.Add("Who gave likes to post");
+                menuItems.Add("Fancy Header");
+                menuItems.Add("Three smallest numbers in list");
+                menuItems.Add("Accept only unique numbers");
+                menuItems.Add("Exit");
+
+                var count = 1;
+                var menuArr = menuItems.ToArray();
+                var len = menuArr.Length;
+                var maxItemLength = 0;
+
+                for (var i = 0; i < len; i++)
+                {
+                    var template = "{0}) {1}";
+                    if (i < 9)
+                    {
+                        template = " " + template;
+                    }
+                    if (menuArr[i].Length > maxItemLength)
+                    {
+                        maxItemLength = menuArr[i].Length + 5;
+                    }
+                    menuArr[i] = String.Format(template, count, menuArr[i]);
+                    count++;
+                }
+
+                Console.Clear();
+                var builder = new StringBuilder();
+                builder
+                    .AppendLine("Choose an option:")
+                    .Append('-', maxItemLength)
+                    .AppendLine()
+                    .AppendJoin("\r\n", menuArr)
+                    .AppendLine()
+                    .Append('-', maxItemLength);
+
+                message.Info(builder.ToString());
+
                 Console.Write("\r\nSelect an option: ");
 
                 switch (Console.ReadLine())
@@ -1128,21 +1206,28 @@ namespace CSharpFundamentals
                     case "15":
                         AcceptUniquesList();
                         return true;
-                    case "20":
+                    case "16":
+                        // exit
                         return false;
                     default:
                         return true;
                 }
             }
 
+           
+            bool showMenu = true;
+            while (showMenu)
             {
-                bool showMenu = true;
-                while (showMenu)
-                {
-                    showMenu = MainMenu();
-                }
+                showMenu = MainMenu();
             }
-
+            
         }
+    }
+
+    class menuSection
+    {
+        public string description;
+        public bool showsMenu;
+        public string method;
     }
 }
