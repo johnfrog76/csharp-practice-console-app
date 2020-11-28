@@ -7,169 +7,12 @@ using System.Reflection;
 
 namespace CSharpFundamentals
 {
-    public enum ShippingMethod
-    {
-        RegularAirMail = 1,
-        RegisteredAirMail = 2,
-        Express = 3
-    }
-
 
     class Program
     {
-
         public static void MenuExit()
         {
             WriteSuccessMessage("done!");
-        }
-
-        public static bool MainMenu()
-        {
-            var message = new Messages();
-
-            var menuItems = new List<MenuItem>();
-            menuItems.Add(new MenuItem(
-                "Enter valid time string 24 hour format",
-                true,
-                "EnterValidTimeFormat"
-            ));
-            menuItems.Add(new MenuItem(
-                "Make Pascal Case",
-                true,
-                "MakePascalCase"
-            ));
-            menuItems.Add(new MenuItem(
-                "String has duplicate number",
-                true,
-                "StrHasDuplicateNumber"
-            ));
-            menuItems.Add(new MenuItem(
-                "Count vowels in a string",
-                true,
-                "CountVowelsInString"
-            ));
-            menuItems.Add(new MenuItem(
-                "String contains consecutive numbers",
-                true,
-                "TestStringConsecutiveNumbers"
-            ));
-            menuItems.Add(new MenuItem(
-                "Reverse string",
-                true,
-                "ReverseString"
-            ));
-            menuItems.Add(new MenuItem(
-                "Truncate some strings",
-                true,
-                "TruncateSomeTexts"
-            ));
-            menuItems.Add(new MenuItem(
-                "Some DateTime stuff",
-                true,
-                "StuffWithDateTime"
-            ));
-            menuItems.Add(new MenuItem(
-                "Calculate running total",
-                true,
-                "CalculateRunningTotal"
-            ));
-            menuItems.Add(new MenuItem(
-                "Create a random string of characters",
-                true,
-                "GeneratePass"
-            ));
-            menuItems.Add(new MenuItem(
-                "Guess a number",
-                true,
-                "GuessNumberOneTen"
-            ));
-            menuItems.Add(new MenuItem(
-                "Who gave likes to post",
-                true,
-                "ShowLikes"
-            ));
-            menuItems.Add(new MenuItem(
-                "Fancy Header",
-                true,
-                "MakeFancyHeader"
-            ));
-            menuItems.Add(new MenuItem(
-                "Three smallest numbers in list",
-                true,
-                "SmallestNumsInList"
-            ));
-            menuItems.Add(new MenuItem(
-                "Accept only unique numbers",
-                true,
-                "AcceptUniquesList"
-            ));
-            menuItems.Add(new MenuItem(
-                "Exit",
-                false,
-                "MenuExit"
-            ));
-
-            var count = 0;
-            var menuTitles = new List<string>();
-
-            foreach (var item in menuItems)
-            {
-                menuTitles.Add(item.Description);
-            }
-
-            var menuArr = menuTitles.ToArray();
-            var len = menuArr.Length;
-            var maxItemLength = 0;
-
-            for (var i = 0; i < len; i++)
-            {
-                var template = "{0}) {1}";
-                if (i < 10)
-                {
-                    template = " " + template;
-                }
-                if (menuArr[i].Length > maxItemLength)
-                {
-                    maxItemLength = menuArr[i].Length + 5;
-                }
-                menuArr[i] = String.Format(template, count, menuArr[i]);
-                count++;
-            }
-
-            Console.Clear();
-            var builder = new StringBuilder();
-            builder
-                .AppendLine("Choose an option:")
-                .Append('-', maxItemLength)
-                .AppendLine()
-                .AppendJoin("\r\n", menuArr)
-                .AppendLine()
-                .Append('-', maxItemLength);
-
-            message.Info(builder.ToString());
-
-            Console.Write("\r\nSelect an option: ");
-
-            while (true)
-            {
-                var input = Console.ReadLine();
-                if (!String.IsNullOrWhiteSpace(input))
-                {
-                    try
-                    {
-                        var val = Convert.ToInt16(input);
-                        CallMethod(menuItems[val].MethodName);
-                        return menuItems[val].ShowsMenu;
-                    }
-                    catch (Exception)
-                    {
-                        WriteErrorMessage("Sorry, unable to find this menu item.");
-                    }
-
-                }
-                continue;
-            }
-
         }
 
         public static void WriteErrorMessage(string msg = "an unknown error occured")
@@ -191,23 +34,6 @@ namespace CSharpFundamentals
             message.Warn(msg);
         }
 
-
-        static void SubMenu()
-        {
-            var message = new Messages();
-
-
-            message.Info("\r\nPress Enter to return to Main Menu");
-
-            var user = Console.ReadLine();
-
-            if (String.IsNullOrWhiteSpace(user))
-            {
-                MainMenu();
-            }
-
-        }
-
         public static void ShowLikes()
         {
             WriteInstructions("Type a name and hit enter, repeat again to see " +
@@ -226,7 +52,7 @@ namespace CSharpFundamentals
                     {
                         if (input.ToUpper() == "EXIT")
                         {
-                            SubMenu();
+                            MenuApp.SubMenu();
                             break;
                         }
 
@@ -307,7 +133,7 @@ namespace CSharpFundamentals
 
                         WriteSuccessMessage(success);
 
-                        SubMenu();
+                        MenuApp.SubMenu();
                         break;
                     }
                     continue;
@@ -356,7 +182,7 @@ namespace CSharpFundamentals
                                 var success = String.Format("I have five uniques: {0}!", str);
                                 WriteSuccessMessage(success);
 
-                                SubMenu();
+                                MenuApp.SubMenu();
                                 break;
 
                             }
@@ -431,7 +257,7 @@ namespace CSharpFundamentals
                         var success = String.Format("Three smallest numbers: {0}", min);
                         WriteSuccessMessage(success);
 
-                        SubMenu();
+                        MenuApp.SubMenu();
                         break;
                     }
 
@@ -492,7 +318,7 @@ namespace CSharpFundamentals
                     {
                         Console.WriteLine("done");
                         Console.Clear();
-                        SubMenu();
+                        MenuApp.SubMenu();
                         break;
                     }
                     else
@@ -566,7 +392,7 @@ namespace CSharpFundamentals
 
             }
 
-            SubMenu();
+            MenuApp.SubMenu();
         }
 
         public static void TruncateSomeTexts()
@@ -619,7 +445,7 @@ namespace CSharpFundamentals
             Console.WriteLine(SummarizeText(sentense));
             Console.WriteLine(SummarizeText("wassup short string"));
 
-            SubMenu();
+            MenuApp.SubMenu();
 
         }
 
@@ -639,7 +465,7 @@ namespace CSharpFundamentals
 
             Console.Clear();
             WriteSuccessMessage(builder.ToString());
-            SubMenu();
+            MenuApp.SubMenu();
 
         }
 
@@ -685,7 +511,7 @@ namespace CSharpFundamentals
                         notStr = isConsecutive ? "are" : "not";
 
                         WriteSuccessMessage(String.Format(template, notStr));
-                        SubMenu();
+                        MenuApp.SubMenu();
                         break;
                     }
                     break;
@@ -752,7 +578,7 @@ namespace CSharpFundamentals
                         {
                             WriteSuccessMessage("No duplicates!");
                         }
-                        SubMenu();
+                        MenuApp.SubMenu();
                         break;
                     }
                     continue;
@@ -784,7 +610,7 @@ namespace CSharpFundamentals
                             var myDate = DateTime.Parse(input);
                             Console.WriteLine(myDate);
 
-                            SubMenu();
+                            MenuApp.SubMenu();
                             break;
 
                         }
@@ -849,7 +675,7 @@ namespace CSharpFundamentals
                         var success = String.Format(MakePascalString(input));
                         WriteSuccessMessage(success);
 
-                        SubMenu();
+                        MenuApp.SubMenu();
                         break;
 
                     }
@@ -901,7 +727,7 @@ namespace CSharpFundamentals
                         );
                         WriteSuccessMessage(success);
 
-                        SubMenu();
+                        MenuApp.SubMenu();
                         break;
                     }
                     continue;
@@ -950,30 +776,13 @@ namespace CSharpFundamentals
             // parse
             Console.WriteLine(DateTime.Parse("23:00"));
 
-            SubMenu();
+            MenuApp.SubMenu();
         }
 
-        static void CallMethod(string method)
-        {
-            try
-            {
-                var t = new Program();
-                t.GetType()
-                    .GetMethod(method)
-                    .Invoke(t, null);
+        // public static void CallMethod(string method)
+        //{
 
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                var errorMessage = String.Format(
-                    "Sorry could not find method {0}",
-                    method
-                );
-                WriteErrorMessage(errorMessage);
-                Console.ReadKey();
-            }
-        }
+        //}
 
         public static void GeneratePass()
         {
@@ -992,7 +801,7 @@ namespace CSharpFundamentals
             var success = String.Format("password: {0}", password);
             WriteSuccessMessage(success);
 
-            SubMenu();
+            MenuApp.SubMenu();
 
 
         }
@@ -1284,7 +1093,7 @@ namespace CSharpFundamentals
             bool showMenu = true;
             while (showMenu)
             {
-                showMenu = MainMenu();
+                showMenu = MenuApp.MainMenu();
             }
             
         }
