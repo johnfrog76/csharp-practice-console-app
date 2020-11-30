@@ -1,16 +1,15 @@
 ﻿<Properties StartupConfiguration="{AFE653BA-1F2E-4FA0-8387-63C65730635A}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="CSharpFundamentals/Program.cs">
     <Files>
-      <File FileName="CSharpFundamentals/Program.cs" Line="26" Column="28" />
-      <File FileName="CSharpFundamentals/Season.cs" Line="1" Column="1" />
-      <File FileName="CSharpFundamentals/MenuItem.cs" Line="2" Column="29" />
+      <File FileName="CSharpFundamentals/Program.cs" Line="9" Column="2" />
+      <File FileName="CSharpFundamentals/MenuItem.cs" Line="2" Column="2" />
+      <File FileName="CSharpFundamentals/EmptyClass.cs" Line="185" Column="25" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CSharpFundamentals" expanded="True">
             <Node name="CSharpFundamentals" expanded="True">
-              <Node name="Math" expanded="True" />
               <Node name="Program.cs" selected="True" />
             </Node>
           </Node>

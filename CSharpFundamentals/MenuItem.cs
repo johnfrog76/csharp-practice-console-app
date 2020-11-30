@@ -1,19 +1,38 @@
-﻿namespace CSharpFundamentals
+using System;
+
+namespace CSharpFundamentals
 {
-    public class MenuItem
+
+    public abstract class MenuItem
     {
-        public string Description {get; private set;}
+        public abstract string Title {get;}
+        public abstract string Instructions {get;}
+        public virtual string LoopInstructions
+            => "Type something else, or press enter to return to menu.";
 
-        public bool ShowsMenu { get; private set;}
+        protected static Messages Messages = new Messages();
 
-        public string MethodName {get; private set;}
+        public abstract bool Execute();
+    }
 
-        // constructor
-        public MenuItem(string description, bool showsMenu, string methodName)
-        {
-            Description = description;
-            ShowsMenu = showsMenu;
-            MethodName = methodName;
+
+    public abstract class RepeatingStatelessMenuItem : MenuItem
+    {
+        protected abstract void LineHandler( string text );
+
+        public override bool Execute() {
+            Messages.Instruction( Instructions );
+            var line = Console.ReadLine();
+
+            while ( line.Length >= 1 ) {
+                LineHandler( line );
+                Messages.Info( LoopInstructions );
+                line = Console.ReadLine();
+            }
+            return true;
         }
     }
 }
+
+
+
