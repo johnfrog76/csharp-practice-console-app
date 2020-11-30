@@ -25,6 +25,7 @@ namespace CSharpFundamentals
         {
             try
             {
+                // calls method on the Program class
                 var t = new Program();
                 t.GetType()
                     .GetMethod(MethodName)

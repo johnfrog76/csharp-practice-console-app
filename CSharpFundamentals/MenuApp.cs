@@ -8,27 +8,27 @@ namespace CSharpFundamentals
     {
         public MenuApp(){}
 
-        public static void CallMethod (string method)
-        {
-            try
-            {
-                var t = new Program();
-                t.GetType()
-                    .GetMethod(method)
-                    .Invoke(t, null);
+        // public static void CallMethod (string method)
+        // {
+        //     try
+        //     {
+        //         var t = new Program();
+        //         t.GetType()
+        //             .GetMethod(method)
+        //             .Invoke(t, null);
 
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                var errorMessage = String.Format(
-                    "Sorry could not find method {0}",
-                    method
-                );
-                Program.WriteErrorMessage(errorMessage);
-                Console.ReadKey();
-            }
-        }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         //Console.WriteLine("Error: " + ex.Message);
+        //         var errorMessage = String.Format(
+        //             "Error Message: {0}",
+        //
+        //         );
+        //         Program.WriteErrorMessage(errorMessage);
+        //         Console.ReadKey();
+        //     }
+        // }
 
         public static void SubMenu()
         {
