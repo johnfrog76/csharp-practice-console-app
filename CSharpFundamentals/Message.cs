@@ -55,5 +55,9 @@ namespace CSharpFundamentals
         {
             All(MessageType.Warn, msg);
         }
+        public void Instruction(string msg) {
+            Console.Clear();
+            Warn(msg);
+        }
     }
 }

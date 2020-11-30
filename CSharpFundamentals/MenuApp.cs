@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Linq;
 
 namespace CSharpFundamentals
 {
@@ -53,87 +50,23 @@ namespace CSharpFundamentals
             var message = new Messages();
 
             var menuItems = new List<MenuItem>();
-            menuItems.Add(new OldMenuItem(
-                "Enter valid time string 24 hour format",
-                true,
-                "EnterValidTimeFormat"
-            ));
-            menuItems.Add( new PascalCaseMenuItem() );
-            menuItems.Add(new OldMenuItem(
-                "String has duplicate number",
-                true,
-                "StrHasDuplicateNumber"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Count vowels in a string",
-                true,
-                "CountVowelsInString"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "String contains consecutive numbers",
-                true,
-                "TestStringConsecutiveNumbers"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Reverse string",
-                true,
-                "ReverseString"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Truncate some strings",
-                true,
-                "TruncateSomeTexts"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Some DateTime stuff",
-                true,
-                "StuffWithDateTime"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Calculate running total",
-                true,
-                "CalculateRunningTotal"
-            ));
+            menuItems.Add(new EnterValidTimeFormat());
+            menuItems.Add(new PascalCaseMenuItem());
+            menuItems.Add(new StrHasDuplicateNumber());
+            menuItems.Add(new CountVowelsString());
+            menuItems.Add(new TestStringConsecutiveNumbers());
+            menuItems.Add(new ReverseString());
+            menuItems.Add(new TruncateSomeStrings());
+            menuItems.Add(new PracticeWithDateTime());
             menuItems.Add(new RunningTotal());
-            menuItems.Add(new OldMenuItem(
-                "Create a random string of characters",
-                true,
-                "GeneratePass"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Guess a number",
-                true,
-                "GuessNumberOneTen"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Who gave likes to post",
-                true,
-                "ShowLikes"
-            ));
+            menuItems.Add(new GenerateRandomCharacters());
+            menuItems.Add(new GuessNumberOneTen());
             menuItems.Add(new ShowLikes());
-            menuItems.Add(new OldMenuItem(
-                "Fancy Header",
-                true,
-                "MakeFancyHeader"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Three smallest numbers in list",
-                true,
-                "SmallestNumsInList"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Accept only unique numbers",
-                true,
-                "AcceptUniquesList"
-            ));
-            menuItems.Add(new OldMenuItem(
-                "Exit",
-                false,
-                "MenuExit"
-            ));
+            menuItems.Add(new MakeFancyHeader());
+            menuItems.Add(new SmallestNumsInList());
+            menuItems.Add(new AcceptUniquesList());
             menuItems.Add( new EchoMenuItem() );
             menuItems.Add( new ExitMenuItem() );
-
 
             var count = 0;
             var menuTitles = new List<string>();

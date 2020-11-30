@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace CSharpFundamentals {
     class ShowLikes : MenuItem {
-        public override string Title => "Show Likes";
+        public override string Title => "Who gave likes to post";
         public override string Instructions => "Type a name and hit enter, repeat again to see " +
                 "who gave like this post. Type 'exit' when done.";
 
         public override bool Execute()
         {
-            Messages.Warn(Instructions);
+            Messages.Instruction(Instructions);
 
             var input = "";
             var likes = new List<string>();

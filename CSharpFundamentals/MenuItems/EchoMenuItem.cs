@@ -7,7 +7,7 @@ namespace CSharpFundamentals
 
         protected override void LineHandler(string text)
         {
-            Messages.Info( text );
+            Messages.Instruction( text );
         }
     }
 }

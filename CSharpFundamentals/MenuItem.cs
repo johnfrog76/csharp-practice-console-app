@@ -21,7 +21,7 @@ namespace CSharpFundamentals
         protected abstract void LineHandler( string text );
 
         public override bool Execute() {
-            Messages.Info( Instructions );
+            Messages.Instruction( Instructions );
             var line = Console.ReadLine();
 
             while ( line.Length >= 1 ) {
@@ -35,7 +35,4 @@ namespace CSharpFundamentals
 }
 
 
-
-
-//
 

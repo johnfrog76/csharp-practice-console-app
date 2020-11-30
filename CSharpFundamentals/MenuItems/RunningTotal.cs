@@ -9,8 +9,7 @@ namespace CSharpFundamentals {
 
         public override bool Execute()
         {
-            Console.Clear();
-            Messages.Warn(Instructions);
+            Messages.Instruction(Instructions);
             var input = "";
             var result = 0;
             while (true)
