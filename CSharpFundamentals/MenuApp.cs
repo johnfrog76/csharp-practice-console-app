@@ -65,6 +65,7 @@ namespace CSharpFundamentals
             menuItems.Add(new MakeFancyHeader());
             menuItems.Add(new SmallestNumsInList());
             menuItems.Add(new AcceptUniquesList());
+            menuItems.Add(new ExampleLinkedList());
             menuItems.Add( new EchoMenuItem() );
             menuItems.Add( new ExitMenuItem() );
 
@@ -121,7 +122,8 @@ namespace CSharpFundamentals
                     }
                     catch (Exception)
                     {
-                        Program.WriteErrorMessage("Sorry, unable to find this menu item.");
+                        var messages = new Messages();
+                        messages.Error("Sorry, unable to find this menu item.");
                     }
 
                 }
