@@ -1,13 +1,8 @@
 ﻿<Properties StartupConfiguration="{AFE653BA-1F2E-4FA0-8387-63C65730635A}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="CSharpFundamentals/MenuItems/ExampleLinkedList.cs">
     <Files>
-      <File FileName="CSharpFundamentals/Program.cs" Line="9" Column="2" />
-      <File FileName="CSharpFundamentals/MenuItem.cs" />
-      <File FileName="CSharpFundamentals/Node.cs" />
-      <File FileName="CSharpFundamentals/MenuItems/ExampleLinkedList.cs" Line="1" Column="1" />
-      <File FileName="CSharpFundamentals/MenuApp.cs" />
-      <File FileName="CSharpFundamentals/LinkedList.cs" />
-      <File FileName="CSharpFundamentals/MenuItems/GenerateRandomCharacters.cs" />
+      <File FileName="CSharpFundamentals/MenuItems/ExampleLinkedList.cs" Line="17" Column="44" />
+      <File FileName="CSharpFundamentals/LinkedList.cs" Line="183" Column="75" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -27,7 +22,9 @@
   <MonoDevelop.Ide.ItemProperties.CSharpFundamentals PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint enabled="false" file="/Users/jwebster/Projects/CSharpFundamentals/CSharpFundamentals/LinkedList.cs" relfile="CSharpFundamentals/LinkedList.cs" line="28" column="13" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

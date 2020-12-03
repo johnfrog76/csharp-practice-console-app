@@ -22,6 +22,31 @@ namespace CSharpFundamentals
             AddAtIndex(data, 0);
         }
 
+        public int GetSize ()
+        {
+            var node = this.Head;
+            var counter = 1;
+
+            if (node == null)
+            {
+                return 0;
+            }
+
+            while (node != null)
+            {
+
+                if (node.Next == null)
+                {
+
+                    break;
+                }
+                node = node.Next;
+                counter++;
+            }
+
+            return counter;
+        }
+
         public void RemoveAtIndex(int index)
         {
             var myNode = this.Head;
@@ -155,7 +180,7 @@ namespace CSharpFundamentals
             }
 
             var myNode = this.Head;
-            var myStr = "";
+            var myStr = "List contains " + GetSize().ToString() + " items: ";
 
             while (myNode != null)
             {

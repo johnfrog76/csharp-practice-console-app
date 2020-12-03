@@ -10,8 +10,9 @@ namespace CSharpFundamentals {
 
 
             var linkedList = new LinkedList();
-          
+
             // add to head
+
             linkedList.AddNodeHead("apple");
             linkedList.AddNodeHead("pear");
             linkedList.AddNodeHead("orange");
